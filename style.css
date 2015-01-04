@@ -1,0 +1,11 @@
+td {
+	height: 20px;
+	width:20px;
+	border: 1px solid black;
+}
+
+.spot {
+	min-height:50px;
+	min-width: 50px;
+	border:1px solid gray;
+}

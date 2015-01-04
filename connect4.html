@@ -1,0 +1,46 @@
+<html>
+<head>
+	<!-- JQuery -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+	<link type="text/css" rel="stylesheet" href="style.css"/>
+
+	<script src='board.js'></script>
+	<script src='online_board.js'></script>
+	<script src='online_controller.js'></script>
+
+	<script>
+		$(document).ready(function(){
+			boardd = new Board(6,7)
+			control = new Controller(boardd)
+			display = new Display(control)
+			control.display = display
+		})
+	</script>
+</head>
+<body>
+	<div class='container'>
+		<btn class="btn btn-success">Start Game</btn>
+
+		<br><br>
+
+		<div id="board"></div>
+
+		<br>
+
+		<div id="messeges"></div>
+	</div>
+</body>
+</html>
+
+
+
