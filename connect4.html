@@ -20,8 +20,8 @@
 
 	<script>
 		$(document).ready(function(){
-			boardd = new Board(6,7)
-			control = new Controller(boardd)
+			board = new Board(6,7)
+			control = new Controller(board)
 			display = new Display(control)
 			control.display = display
 		})
@@ -29,7 +29,7 @@
 </head>
 <body>
 	<div class='container'>
-		<btn class="btn btn-success">Start Game</btn>
+		<btn class="btn btn-success", id='start'>Start Game</btn>
 
 		<br><br>
 

@@ -60,6 +60,14 @@ function Board(height, width) {
 		self.rep[x][y].sym = newSym
 	}
 
+	this.newBoard = function() {
+		for (var x=0;x < this.width; x++) {
+			for (var y=0;y< this.height;y++) {
+				self.changeSym(x,y,"*")
+			}
+		}
+	}
+
 	// ________________Board information section__________________
 	//we use the board to store all interesting information about itself.
 	//The main thing here is a streak calculator 

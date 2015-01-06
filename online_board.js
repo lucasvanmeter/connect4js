@@ -2,17 +2,23 @@ function Display(controller) {
 	var self = this
 	this.controller = controller
 	this.colors = ['red','black']
-	//This will make the grid for us using bootstrap
+	this.playing = false
 
-	strt = document.createElement('btn')
-	$(strt)
-	.addClass('btn btn-success')
-	.html("Start Game")
-	.click(function(e){
-		self.controller.togglePlaying()
-		$(strt).html("End Game")
+	this.togglePlaying = function() {
+		if (self.playing) {
+			self.playing = false
+			$(start).html("New Game")
+		} else {
+			self.playing = true
+			$(start).html("End Game")
+			self.controller.newGame()
+			self.updateMessege("It is red's move first.")
+		}
+	}
+
+	$('#start').click(function() {
+		self.togglePlaying()
 	})
-	$("#start").append(strt)
 
 	d = document.createElement('div')
 	for (var i=5;i>=0;i--) {
@@ -57,12 +63,20 @@ function Display(controller) {
 		$("#"+x+"-"+y).css('background-color',self.colors[turn])
 	}
 
+	this.clearBoard = function() {
+		for (var x=0;x<=5;x++) {
+			for (var y=0;y<=6;y++) {
+				$("#"+x+"-"+y).css('background-color','white')
+			}
+		}
+	}
+
 	//We add some messeges at the bottom
 
 	this.messege = document.createElement('div')
 	$(this.messege)
 	.addClass('alert alert-info')
-	.html(this.colors[0] + " plays first.")
+	.html("Press Start to begin.")
 	$('#messeges').append(this.messege)
 
 	this.updateMessege = function(msg) {

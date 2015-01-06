@@ -4,13 +4,21 @@ function Controller(board, display) {
 	this.display = display
 	var brd = this.board
 	this.turn = 0
-	this.playing = true
 
 	// validMoves is a property of the controller. It is initilized as the 
 	// bottom row and is updated every move.
 	this.validMoves = {}
 	for (var i=0; i<brd.width;i++) {
 		this.validMoves[i] = 0
+	}
+
+	this.newGame = function() {
+		self.display.clearBoard()
+		self.board.newBoard()
+		for (var i=0; i<brd.width;i++) {
+		this.validMoves[i] = 0
+		}
+		self.turn=0
 	}
 
 	this.playTurn = function(input) {
@@ -21,12 +29,15 @@ function Controller(board, display) {
 			brd.changeSym(input[0], input[1],["X","O"][self.turn])
 			self.display.updateBoard(input[0],input[1],self.turn)
 
-			self.display.updateMessege(brd.maxStreak(input[0],input[1],["X","O"][self.turn])>=4)
+			//Then we announce who'se turn it is next. This will be immediatly overwritten 
+			//if the game is over.
+			self.display.updateMessege("It is "+self.display.colors[((self.turn + 1) % 2)]+"'s turn.")
 
 			//Next we check to see if the game is over. Either one player gets 4 in
 			//a row or there are no more valid moves.
 			if (brd.maxStreak(input[0],input[1],["X","O"][self.turn]) >= 4) {
 				self.display.updateMessege(self.display.colors[self.turn] + " wins!")
+				self.display.togglePlaying()
 			}
 			
 			// then we update the valid moves
@@ -39,9 +50,10 @@ function Controller(board, display) {
 			// and check to see if there are any moves left.
 			if (Object.keys(self.validMoves).length === 0) {
 				self.display.updateMessege("The game is a tie!")
+				self.display.togglePlaying()
 			}
 
-			//Say who's turn it is next
+			//Update the turn.
 			self.turn = (self.turn + 1) % 2
 			//self.display.updateMessege("It is "+self.display.colors[self.turn]+"'s turn.")
 
@@ -53,18 +65,10 @@ function Controller(board, display) {
 
 	//Whenver someone click on the board the following code will run a turn
 	this.getInput = function(input) {
-		if (self.playing) {
+		if (self.display.playing) {
 			this.playTurn(input)
 		} else {
-			self.display.updateMessege("The game is currently running: "+self.playing)
-		}
-	}
-
-	this.togglePlaying = function(){
-		if (self.playing) {
-			self.playing = false
-		} else {
-			self.playing = true
+			self.display.updateMessege("The game is not currently running.")
 		}
 	}
 }
