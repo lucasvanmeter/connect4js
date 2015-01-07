@@ -5,25 +5,15 @@ function Controller(board, display) {
 	var brd = this.board
 	this.turn = 0
 
-	// validMoves is a property of the controller. It is initilized as the 
-	// bottom row and is updated every move.
-	this.validMoves = {}
-	for (var i=0; i<brd.width;i++) {
-		this.validMoves[i] = 0
-	}
-
 	this.newGame = function() {
 		self.display.clearBoard()
 		self.board.newBoard()
-		for (var i=0; i<brd.width;i++) {
-		this.validMoves[i] = 0
-		}
 		self.turn=0
 	}
 
 	this.playTurn = function(input) {
 		// First we make sure the move is valid
-		if (input[0] in self.validMoves && input[1] == self.validMoves[input[0]]) {
+		if (input[0] in brd.validMoves && input[1] == brd.validMoves[input[0]]) {
 			
 			//First we modify both boards
 			brd.changeSym(input[0], input[1],["X","O"][self.turn])
@@ -41,14 +31,14 @@ function Controller(board, display) {
 			}
 			
 			// then we update the valid moves
-			if (self.validMoves[input[0]] + 1 < brd.height) {
-				self.validMoves[input[0]] += 1
+			if (brd.validMoves[input[0]] + 1 < brd.height) {
+				brd.validMoves[input[0]] += 1
 			} else {
-				delete self.validMoves[input[0]] 
+				delete brd.validMoves[input[0]] 
 			} 
 
 			// and check to see if there are any moves left.
-			if (Object.keys(self.validMoves).length === 0) {
+			if (Object.keys(brd.validMoves).length === 0) {
 				self.display.updateMessege("The game is a tie!")
 				self.display.togglePlaying()
 			}

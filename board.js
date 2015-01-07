@@ -56,13 +56,22 @@ function Board(height, width) {
 		}
 	}
 
+	//The validMoves dictionary will tell you where you can play.
+	this.validMoves = {}
+	for (var x=0; x<this.width;x++) {
+		this.validMoves[x] = 0
+	}
+
+	//Change sym is the command that lets us update the board.
 	this.changeSym = function(x, y, newSym) {
 		self.rep[x][y].sym = newSym
 	}
 
+	//NewBoard will clear everything.
 	this.newBoard = function() {
-		for (var x=0;x < this.width; x++) {
-			for (var y=0;y< this.height;y++) {
+		for (var x=0;x < self.width; x++) {
+			self.validMoves[x] = 0
+			for (var y=0;y< self.height;y++) {
 				self.changeSym(x,y,"*")
 			}
 		}
