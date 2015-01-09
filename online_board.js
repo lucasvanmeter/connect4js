@@ -24,36 +24,22 @@ function Display(controller) {
 	for (var i=5;i>=0;i--) {
 		r = document.createElement('div')
 		$(r)
-		.addClass('row')
+		.addClass('row seven-cols')
 		.attr('id','row-'+i)
 		$(d).append(r)
-		for (var j=0;j<9;j++) {
+		for (var j=0;j<7;j++) {
 			var c = document.createElement('div')
-			if(j < 7) {
-				$(c)
-				.addClass('col-xs-1 spot')
-				.attr('id',j+'-'+i)
-				.data('position',[j,i])
-				.click(function(e){
-					self.controller.getInput($(this).data('position'))
-				})
-			} else if (j == 7) {
-				$(c)
-				.addClass('col-xs-1')
-				.attr('id',j+'-'+i)
-			} else if (i == 1) {
-				$(c)
-				.addClass("col-xs-4")
-				.html('Option 1')
-			} else if (i == 2) {
-				$(c)
-				.addClass("col-xs-4")
-				.html('Option 2')
-			} else {
-				$(c)
-				.addClass('col-xs-1')
-				.attr('id',j+'-'+i)
-			}
+			$(c)
+			.addClass('col-xs-1 col-sm-1')
+			var s = document.createElement('div')
+			$(s)
+			.addClass('spot')
+			.attr('id',j+'-'+i)
+			.data('position',[j,i])
+			.click(function(e){
+				self.controller.getInput($(this).data('position'))
+			})
+			$(c).append(s)
 			$(r).append(c)
 		}
 	}
@@ -64,9 +50,9 @@ function Display(controller) {
 	}
 
 	this.clearBoard = function() {
-		for (var x=0;x<=5;x++) {
-			for (var y=0;y<=6;y++) {
-				$("#"+x+"-"+y).css('background-color','white')
+		for (var x=0;x<6;x++) {
+			for (var y=0;y<7;y++) {
+				$("#"+y+"-"+x).css('background-color','')
 			}
 		}
 	}
