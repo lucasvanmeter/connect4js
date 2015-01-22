@@ -121,6 +121,18 @@ function Board(height, width) {
 				as[-1][1] + as[0][0] + as[1][-1]
 			)
 		}
+	}
+
+	this.sumStreaks = function(x,y,symb) {
+		if (self.rep[x][y].sym != symb) {
+			return 0
+		var sum = 0
+		for (var i=-1;i<2;i++) {
+			for (var j=-1;j<2;j++) {
+				sum += self.allStreaks(i,j,symb)
+			}
+		}
+		return sum
 	}	
 	
 
