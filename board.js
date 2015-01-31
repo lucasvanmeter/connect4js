@@ -126,6 +126,7 @@ function Board(height, width) {
 	this.sumStreaks = function(x,y,symb) {
 		if (self.rep[x][y].sym != symb) {
 			return 0
+		}
 		var sum = 0
 		for (var i=-1;i<2;i++) {
 			for (var j=-1;j<2;j++) {
