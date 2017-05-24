@@ -3,7 +3,7 @@ The game state is controled by the Board.js file.
 Online_board.js and Online_Controllor.js translate the information in Board.js into html and recive input.
 Bot.js is not finished yet.
 
-You can play the game here: [link](connect4.html)
+You can play the game here: [link](http://lucasvanmeter.github.io/connect4js/connect4.html)
 
 Here is a picture of a game before starting: ![image](https://cloud.githubusercontent.com/assets/9029304/26429759/b149258c-409d-11e7-84e5-bb77a088b10b.png)
 
