@@ -3,4 +3,4 @@ The game state is controled by the Board.js file.
 Online_board.js and Online_Controllor.js translate the information in Board.js into html and recive input.
 Bot.js is not finished yet.
 
-You can play the game here: [link](connect4js.html)
+You can play the game here: [link](connect4.html)
